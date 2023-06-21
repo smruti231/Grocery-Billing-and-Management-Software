@@ -1,0 +1,137 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+  </head>
+  <body>
+    <h3>This is the Templates Index Page</h3>
+  </body>
+</html>
+
+{% extends 'partials/base.html' %} {% block title %} Home Page {% endblock %}
+{% block content %} 
+
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+{% include 'partials/topnav.html' %}
+<!--Graphs-->
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6">
+      <div class="bg-white">
+        <canvas id="myChart1" width="400" height="300"></canvas>
+        <script>
+          var ctx = document.getElementById("myChart1").getContext("2d");
+          var myChart1 = new Chart(ctx, {
+            type: "pie",
+            data: {
+              labels: [{% for order in orders %} '{{ order.product.name }}', {% endfor %}],
+              datasets: [
+                {
+                  label: "Orders",
+                  data: [{% for order in orders %} {{ order.order_quantity }}, {% endfor %}],
+                  backgroundColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                    "rgba(25, 9, 232, 1)",
+                    "rgba(254, 16, 235, 19)",
+                    "rgba(25, 236, 86, 12)",
+                    "rgba(87, 218, 192, 10)",
+                    "rgba(153, 182, 225, 91)",
+                    "rgba(195, 115, 64, 19)",
+                  ],
+                  borderColor: [
+                  "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                    "rgba(25, 9, 232, 1)",
+                    "rgba(254, 16, 235, 19)",
+                    "rgba(25, 236, 86, 12)",
+                    "rgba(87, 218, 192, 10)",
+                    "rgba(153, 182, 225, 91)",
+                    "rgba(195, 115, 64, 19)",
+                  ],
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                  },
+                ],
+              },
+            },
+          });
+        </script>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="bg-white">
+        <canvas id="myChart" width="400" height="300"></canvas>
+        <script>
+          var ctx = document.getElementById("myChart").getContext("2d");
+          var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+              labels: [{% for product in products %} '{{ product.name }}', {% endfor %}],
+              datasets: [
+                {
+                  label: 'Products',
+                  data: [{% for product in products %} {{ product.quantity }}, {% endfor %}],
+                  backgroundColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                  ],
+                  borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                  ],
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                  },
+                ],
+              },
+            },
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End Graphs-->
+{% else %}
+{% include 'dashboard/retailer_index.html' %}
+{% endif %}
+{% endblock %}
