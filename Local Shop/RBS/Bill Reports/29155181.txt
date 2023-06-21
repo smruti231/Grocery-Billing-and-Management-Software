@@ -1,0 +1,23 @@
+
+	       Retailer BILL-Management 
+	 Phone No.7327852324,Mangalpur-752104
+===============================================
+ Customer Name: Chiku			Time: 11:31:58
+ Ph no. :9090683421
+ Bill No. 29155181			Date: 29/04/2023
+===============================================
+ Product Name			QTY	Price 
+===============================================
+        
+ Basumati(5kg pk)			2	Rs.700.0
+ Aashirbada(1 kg)			1	Rs.10.0
+ Dove(100 gm)			1	Rs.64.0
+ Kit Kat			2	Rs.40.0
+ Thumbs up(1.2 L)			1	Rs.65.0
+===============================================
+ Bill Amount				Rs.879.0
+ Discount				Rs.43.95
+ Net Pay				Rs.835.05
+===============================================
+
+        
