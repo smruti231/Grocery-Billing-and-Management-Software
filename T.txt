@@ -1,0 +1,54 @@
+using System;
+
+namespace ArrayApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                // Get array size from user
+                Console.Write("Enter the size of the array: ");
+                int size = int.Parse(Console.ReadLine());
+
+                // Get data type from user
+                Console.Write("Enter the data type of array elements (int, float, string, etc.): ");
+                string dataType = Console.ReadLine();
+
+                // Initialize the array
+                dynamic[] customArray = new dynamic[size];
+
+                // Get values from user and store in the array
+                for (int i = 0; i < size; i++)
+                {
+                    Console.Write($"Enter value {i + 1}/{size}: ");
+                    string value = Console.ReadLine();
+                    if (dataType == "int")
+                    {
+                        customArray[i] = int.Parse(value);
+                    }
+                    else if (dataType == "float")
+                    {
+                        customArray[i] = float.Parse(value);
+                    }
+                    else
+                    {
+                        customArray[i] = value;
+                    }
+                }
+
+                // Display the items of the array
+                Console.WriteLine("Array items:");
+                foreach (var item in customArray)
+                {
+                    Console.WriteLine(item);
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Invalid input. Please enter valid values.");
+            }
+        }
+    }
+}
